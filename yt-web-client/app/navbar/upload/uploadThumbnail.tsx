@@ -31,8 +31,8 @@ export default function UploadThumbnail({
         <div className="flex flex-col justify-center items-start ml-2">
             <h1 className="font-medium text-sm leading-6 pb-2">Thumbnail</h1>
             <p className="font-normal tracking-[.011em]  text-xs leading-3 text-[#606060] pb-2">
-                Select or upload a picture that shows what's in your video. A
-                good thumbnail stands out and draws viewers' attention.
+                Select or upload a picture that shows what&apos;s in your video.
+                A good thumbnail stands out and draws viewers&apos; attention.
             </p>
             <div className="flex justify-start items-center gap-2">
                 <input

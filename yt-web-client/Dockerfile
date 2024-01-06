@@ -31,6 +31,7 @@ RUN npm install --only=production
 # Copy built app from the builder stage
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.js ./next.config.js
 
 # Expose the listening port
 EXPOSE 3000
