@@ -52,13 +52,14 @@ export const generateUploadUrl = onCall({ maxInstances: 1 }, async (req) => {
     return { url, fileName };
 });
 
-export const getVideos = onCall({ maxInstances: 1 }, async () => {
-    const firstFifty = await firestore
+export const getVideos = onCall({ maxInstances: 1 }, async (req) => {
+    const limit = req.data.limit || 50;
+    const videos = await firestore
         .collection(videoCollectionId)
-        .limit(50)
+        .limit(limit)
         .get();
 
-    return firstFifty.docs.map((doc) => doc.data());
+    return videos.docs.map((doc) => doc.data());
 });
 
 export const setVideoMetadata = onCall(async (req) => {
@@ -119,4 +120,15 @@ export const makeThumbnailPublic = onCall(async (req) => {
     );
 
     return;
+});
+
+export const getUserVideos = onCall(async (req) => {
+    const uid = req.data.uid;
+
+    const videos = await firestore
+        .collection(videoCollectionId)
+        .where("uid", "==", uid)
+        .get();
+
+    return videos.docs.map((doc) => doc.data());
 });
